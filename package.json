@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-prisma-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node prisma/server.js",
+    "swagger": "node prisma/swagger.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.18.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "nodejs-prisma-crud": "file:",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.18.0"
+  }
+}
