@@ -1,5 +1,11 @@
 pipeline {
-    agent any
+    agent { label 'Windows' }
+
+    environment {
+        IMAGE_NAME = 'my-node-app'
+        CONTAINER_NAME = 'my-node-app-container'
+        PORT = '3000'
+    }
 
     stages {
         stage('Checkout Code') {
@@ -11,19 +17,19 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                echo 'Building Docker image...'
-                bat 'docker build -t my-node-app .'
+                echo "Building Docker image: ${IMAGE_NAME}"
+                bat "docker build -t ${IMAGE_NAME} ."
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                echo 'Running Docker container...'
-                bat '''
-                    docker stop my-node-app-container || exit 0
-                    docker rm my-node-app-container || exit 0
-                    docker run -d -p 3000:3000 --name my-node-app-container my-node-app
-                '''
+                echo "Running Docker container: ${CONTAINER_NAME}"
+                bat """
+                    docker stop ${CONTAINER_NAME} || exit 0
+                    docker rm ${CONTAINER_NAME} || exit 0
+                    docker run -d -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${IMAGE_NAME}
+                """
             }
         }
     }
