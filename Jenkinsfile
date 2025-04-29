@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'Windows-Node' }  // Use the label of your Windows node
+    agent { label 'Built-In Node' }  // Use the label of your Windows node
 
     stages {
         stage('Checkout Code') {
